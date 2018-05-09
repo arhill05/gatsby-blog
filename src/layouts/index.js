@@ -19,7 +19,7 @@ class Template extends React.Component {
       header = (
         <h1 className="site-header">
           <Link to={'/'}>
-            Andrew Hill | Developer
+            Andrew Hill
           </Link>
         </h1>
       )
@@ -27,17 +27,17 @@ class Template extends React.Component {
       header = (
         <h3 className="site-header">
           <Link to={'/'}>
-            Andrew Hill | Developer
+            Andrew Hill
           </Link>
         </h3>
       )
     }
     return (
-      <Container style={{maxWidth: '100%'}} className='site-container'>
+      <div className='site-container'>
         {header}
         <Bio />
         {children()}
-      </Container>
+      </div>
     )
   }
 }
