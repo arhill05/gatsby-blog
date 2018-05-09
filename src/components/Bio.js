@@ -14,7 +14,7 @@ class Bio extends React.Component {
       <div className="bio">
         <p>
           Written by <strong>Andrew Hill</strong> who lives in Louisville, KY
-          and has an irrational love of mechanical keyboards.
+          and has an irrational love of duck eggs.
           <div className="contact-links">
             <a href="https://github.com/arhill05">GitHub</a>
             <a href="mailto:me@andrewhill.io">Email</a>
