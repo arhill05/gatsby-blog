@@ -10,6 +10,6 @@ export default {
     backgroundColor: black,
     baseFontColor: white,
     headerColor: purple,
-    duotonePrimary: purple,
+    duotonePrimary: color(purple).desaturate(50),
     duotoneSecondary: black
 }

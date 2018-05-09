@@ -1,14 +1,12 @@
-import Link from 'gatsby-link';
-import get from 'lodash/get';
-import React from 'react';
-import { DuotoneImage } from 'react-duotone';
-import Helmet from 'react-helmet';
-import color from 'tinycolor2';
-import Bio from '../components/Bio';
-import colors from '../utils/colors';
-import { rhythm } from '../utils/typography';
-import './index.scss';
-
+import Link from 'gatsby-link'
+import get from 'lodash/get'
+import React from 'react'
+import { DuotoneImage } from 'react-duotone'
+import Helmet from 'react-helmet'
+import color from 'tinycolor2'
+import colors from '../utils/colors'
+import { rhythm } from '../utils/typography'
+import './index.scss'
 
 class BlogIndex extends React.Component {
   render() {
@@ -16,40 +14,60 @@ class BlogIndex extends React.Component {
     const posts = get(this, 'props.data.allMarkdownRemark.edges')
 
     return (
-      <div>
+      <div className='posts-container'>
         <Helmet title={siteTitle} />
-        <Bio />
         {posts.map(({ node }) => {
           const title = get(node, 'frontmatter.title') || node.fields.slug
           const img = get(node, 'frontmatter.image.publicURL')
+          const id = node.fields.slug.replace(/\/+/g, '')
 
           return (
-            <div style={{
-              backgroundColor: color(colors.backgroundColor).lighten(6),
-              padding: rhythm(1),
-              margin: rhythm(1),
-              boxShadow: '0 2px 4px 2px rgba(0,0,0,0.2)'
-            }} key={node.fields.slug}>
-              <DuotoneImage
-                className='post-image'
-                src={img}
-                primaryColor={colors.duotonePrimary}
-                secondaryColor={colors.duotoneSecondary}
+            <div
+              style={{
+                backgroundColor: color(colors.backgroundColor).lighten(6),
+                margin: rhythm(1),
+                boxShadow: '0 2px 4px 2px rgba(0,0,0,0.2)',
+                position: 'relative',
+                top: 0,
+                left: 0,
+              }}
+              className="post"
+              key={node.fields.slug}
+              id={`post-${id}`}
+            >
+              <div className="image-wrapper">
+                <DuotoneImage
+                  className="post-image"
+                  src={img}
+                  primaryColor={colors.duotonePrimary}
+                  secondaryColor={colors.duotoneSecondary}
+                  style={{
+                    filter: 'drop-shadow(0px 4px 2px 4px rgba(0,0,0,0.2))',
+                  }}
+                />
+              </div>
+              <div
+                className="post-excerpt"
                 style={{
-                  filter: 'drop-shadow(0px 4px 2px 4px rgba(0,0,0,0.2))'
-                }}
-              />
-              <h3
-                style={{
-                  marginBottom: rhythm(1 / 4),
+                  position: 'absolute',
+                  bottom: 0,
+                  left: 0,
+                  paddingLeft: rhythm(1),
+                  paddingRight: rhythm(1),
                 }}
               >
-                <Link style={{ boxShadow: 'none' }} to={node.fields.slug}>
-                  {title}
-                </Link>
-              </h3>
-              <small>{node.frontmatter.date}</small>
-              <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
+                <h2
+                  style={{
+                    marginBottom: rhythm(1 / 4),
+                  }}
+                >
+                  <Link style={{ boxShadow: 'none' }} to={node.fields.slug}>
+                    {title}
+                  </Link>
+                </h2>
+                <small>{node.frontmatter.date}</small>
+                <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
+              </div>
             </div>
           )
         })}
@@ -60,11 +78,14 @@ class BlogIndex extends React.Component {
 
 export default BlogIndex
 
-const styles = {};
-styles.postImage = {
-  width: '100%'
-};
-
+const getPosition = id => {
+  var img = document.querySelector(`#post-${id} img`)
+  const bottom = img.scrollHeight
+  const top = img.scrollTop
+  console.log(top)
+  console.log(bottom)
+  return 0
+}
 export const pageQuery = graphql`
   query IndexQuery {
     site {

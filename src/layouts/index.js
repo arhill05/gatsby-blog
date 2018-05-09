@@ -1,8 +1,10 @@
-import React from 'react'
-import Link from 'gatsby-link'
-import { Container } from 'react-responsive-grid'
+import Link from 'gatsby-link';
+import React from 'react';
+import { Container } from 'react-responsive-grid';
+import Bio from '../components/Bio';
+import { rhythm, scale } from '../utils/typography';
+import './base.scss';
 
-import { rhythm, scale } from '../utils/typography'
 
 class Template extends React.Component {
   render() {
@@ -59,13 +61,14 @@ class Template extends React.Component {
     }
     return (
       <Container
+      className='container'
         style={{
-          maxWidth: rhythm(24),
           padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
           margin: 'auto'
         }}
       >
         {header}
+        <Bio />
         {children()}
       </Container>
     )
