@@ -19,6 +19,7 @@ class Template extends React.Component {
     if (location.pathname === rootPath) {
       header = (
         <h1
+          className="site-header"
           style={{
             ...scale(1.5),
             marginBottom: rhythm(1.5),
@@ -33,13 +34,14 @@ class Template extends React.Component {
             }}
             to={'/'}
           >
-            Gatsby Starter Blog
+            Andrew Hill | Developer
           </Link>
         </h1>
       )
     } else {
       header = (
         <h3
+          className="site-header"
           style={{
             fontFamily: 'Montserrat, sans-serif',
             marginTop: 0,
@@ -54,14 +56,14 @@ class Template extends React.Component {
             }}
             to={'/'}
           >
-            Gatsby Starter Blog
+            Andrew Hill | Developer
           </Link>
         </h3>
       )
     }
     return (
       <Container
-      className='container'
+        className='site-container'
         style={{
           padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
           margin: 'auto'

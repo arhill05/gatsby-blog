@@ -1,5 +1,6 @@
 import Typography from 'typography'
 import colors from './colors'
+import color from 'tinycolor2';
 // import Wordpress2016 from 'typography-theme-wordpress-2016'
 // import sutroTheme from 'typography-theme-sutro'
 
@@ -35,6 +36,15 @@ const typography = new Typography({
       textDecoration: 'none'
     },
     'h1,h2,h3,a': {
+      color: colors.headerColor
+    },
+    'a:hover, a:visited': {
+      color: color(colors.headerColor).darken().toString()
+    },
+    'a > *': {
+      color: colors.baseFontColor
+    },
+    '.post h1, post h2, post h3': {
       color: colors.headerColor
     },
     body: {

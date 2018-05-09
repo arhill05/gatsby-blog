@@ -14,38 +14,25 @@ class BlogIndex extends React.Component {
     const posts = get(this, 'props.data.allMarkdownRemark.edges')
 
     return (
-      <div className='posts-container'>
+      <div>
         <Helmet title={siteTitle} />
         {posts.map(({ node }) => {
           const title = get(node, 'frontmatter.title') || node.fields.slug
-          const img = get(node, 'frontmatter.image.publicURL')
+          let img = get(node, 'frontmatter.image.publicURL')
+          console.log(img);
           const id = node.fields.slug.replace(/\/+/g, '')
 
           return (
-            <div
+            <Link to={node.fields.slug}
               style={{
-                backgroundColor: color(colors.backgroundColor).lighten(6),
-                margin: rhythm(1),
-                boxShadow: '0 2px 4px 2px rgba(0,0,0,0.2)',
-                position: 'relative',
-                top: 0,
-                left: 0,
+                padding: rhythm(1),
+                backgroundImage: `url(${img})`,
+                filter: 'drop-shadow(0 4px 4px rgba(0,0,0,0.4)'
               }}
               className="post"
               key={node.fields.slug}
               id={`post-${id}`}
             >
-              <div className="image-wrapper">
-                <DuotoneImage
-                  className="post-image"
-                  src={img}
-                  primaryColor={colors.duotonePrimary}
-                  secondaryColor={colors.duotoneSecondary}
-                  style={{
-                    filter: 'drop-shadow(0px 4px 2px 4px rgba(0,0,0,0.2))',
-                  }}
-                />
-              </div>
               <div
                 className="post-excerpt"
                 style={{
@@ -61,14 +48,12 @@ class BlogIndex extends React.Component {
                     marginBottom: rhythm(1 / 4),
                   }}
                 >
-                  <Link style={{ boxShadow: 'none' }} to={node.fields.slug}>
-                    {title}
-                  </Link>
+                  {title}
                 </h2>
                 <small>{node.frontmatter.date}</small>
                 <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
               </div>
-            </div>
+            </Link>
           )
         })}
       </div>
