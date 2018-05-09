@@ -4,6 +4,7 @@ import { Container } from 'react-responsive-grid';
 import Bio from '../components/Bio';
 import { rhythm, scale } from '../utils/typography';
 import '../styles/base.scss';
+import '../../node_modules/font-awesome/css/font-awesome.min.css';
 
 class Template extends React.Component {
   render() {
@@ -17,19 +18,25 @@ class Template extends React.Component {
 
     if (location.pathname === rootPath) {
       header = (
-        <h1 className="site-header">
-          <Link to={'/'}>
-            Andrew Hill
-          </Link>
-        </h1>
+        <header className="site-header">
+          <h1>
+            <Link to={'/'}>
+              Andrew Hill
+            </Link>
+          </h1>
+          <i className="fa fa-bars" aria-hidden="true"></i>
+        </header>
       )
     } else {
       header = (
-        <h3 className="site-header">
-          <Link to={'/'}>
-            Andrew Hill
+        <header className="site-header">
+          <h3>
+            <Link to={'/'}>
+              Andrew Hill
           </Link>
-        </h3>
+          </h3>
+          <i className="fa fa-bars" aria-hidden="true"></i>
+        </header>
       )
     }
     return (
