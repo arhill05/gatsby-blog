@@ -1,0 +1,15 @@
+@import 'variables';
+
+.blog-post {
+    grid-area: content;
+    hr {
+        margin-bottom: $baseMargin;
+    }
+}
+
+.post-date {
+    display: block;
+    margin-bottom: $baseMargin;
+    margin-top: -$baseMargin;
+    font-size: .88rem;
+}

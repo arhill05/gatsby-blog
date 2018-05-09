@@ -27,30 +27,7 @@ const typography = new Typography({
       ]
     }
   ],
-  includeNormalize: true,
-  overrideStyles: ({
-    adjustFontSizeTo,
-    rhythm
-  }, options, styles) => ({
-    a: {
-      textDecoration: 'none'
-    },
-    'h1,h2,h3,a': {
-      color: colors.headerColor
-    },
-    'a:hover, a:visited': {
-      color: color(colors.headerColor).darken().toString()
-    },
-    'a > *': {
-      color: colors.baseFontColor
-    },
-    '.post h1, post h2, post h3': {
-      color: colors.headerColor
-    },
-    body: {
-      backgroundColor: colors.backgroundColor
-    }
-  })
+  includeNormalize: true
 });
 
 // Hot reload typography in development.

@@ -1,0 +1,28 @@
+@import 'variables';
+.contact-links a {
+    margin-right: 16px;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.bio {
+    display: flex;
+    margin-bottom: $baseMargin * 2.5;
+    grid-area: bio;
+    grid-column: 2;
+    justify-content: flex-end;
+    img {
+        margin-left: $baseMargin * .5;
+        margin-bottom: 0;
+        width: $baseMargin * 3;
+        height: $baseMargin * 3;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .bio {
+        font-size: $baseFontSize * .9;
+        justify-content: flex-start;
+    }
+}

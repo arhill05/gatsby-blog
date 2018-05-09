@@ -1,0 +1,70 @@
+@import 'variables';
+a {
+    text-decoration: none;
+}
+
+a,
+h1,
+h2,
+h3 {
+    color: $headerColor;
+}
+
+a:hover,
+a:visited {
+    color: darken($linkColor, 10);
+}
+
+a>* {
+    color: $baseFontColor;
+}
+
+body {
+    background-color: $backgroundColor;
+}
+
+.site-container {
+    display: grid;
+    grid-template-rows: 6vh 8vh 1fr;
+    grid-template-columns: 1fr 960px 1fr;
+    grid-template-areas: "head head head" "bio bio bio" ". content .";
+    margin: auto;
+    padding: $baseMargin * 1.5 $baseMargin * .75;
+    min-height: 100vh;
+}
+
+.site-header {
+    text-align: right;
+    font-size: $h1Size;
+    grid-area: head;
+    grid-column: 2;
+    margin-bottom: $baseMargin * 2;
+}
+
+h1.site-header {
+    margin-bottom: $baseMargin * 1.5;
+}
+
+h3.site-header {
+    margin-bottom: -$baseMargin;
+}
+
+@media screen and (max-width: 960px) {
+    .site-container {
+        grid-template-areas: "head" "content" "bio";
+        grid-template-rows: 8vh 1fr 8vh;
+        grid-template-columns: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .site-header, .bio {
+        grid-column: 1;
+        padding: $baseMargin * .75 $baseMargin * .5;
+    }
+
+    .site-header {
+        font-size: $h1Size / 1.4;
+        text-align: center;
+    }
+}

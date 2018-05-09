@@ -6,7 +6,7 @@ import Helmet from 'react-helmet'
 import color from 'tinycolor2'
 import colors from '../utils/colors'
 import { rhythm } from '../utils/typography'
-import './index.scss'
+import '../styles/index.scss'
 
 class BlogIndex extends React.Component {
   render() {
@@ -14,39 +14,24 @@ class BlogIndex extends React.Component {
     const posts = get(this, 'props.data.allMarkdownRemark.edges')
 
     return (
-      <div>
+      <div className="posts-container">
         <Helmet title={siteTitle} />
         {posts.map(({ node }) => {
           const title = get(node, 'frontmatter.title') || node.fields.slug
           let img = get(node, 'frontmatter.image.publicURL')
-          console.log(img);
           const id = node.fields.slug.replace(/\/+/g, '')
 
           return (
             <Link to={node.fields.slug}
               style={{
-                padding: rhythm(1),
                 backgroundImage: `url(${img})`,
-                filter: 'drop-shadow(0 4px 4px rgba(0,0,0,0.4)'
               }}
               className="post"
               key={node.fields.slug}
               id={`post-${id}`}
             >
-              <div
-                className="post-excerpt"
-                style={{
-                  position: 'absolute',
-                  bottom: 0,
-                  left: 0,
-                  paddingLeft: rhythm(1),
-                  paddingRight: rhythm(1),
-                }}
-              >
+              <div className="post-excerpt">
                 <h2
-                  style={{
-                    marginBottom: rhythm(1 / 4),
-                  }}
                 >
                   {title}
                 </h2>
@@ -63,14 +48,6 @@ class BlogIndex extends React.Component {
 
 export default BlogIndex
 
-const getPosition = id => {
-  var img = document.querySelector(`#post-${id} img`)
-  const bottom = img.scrollHeight
-  const top = img.scrollTop
-  console.log(top)
-  console.log(bottom)
-  return 0
-}
 export const pageQuery = graphql`
   query IndexQuery {
     site {
